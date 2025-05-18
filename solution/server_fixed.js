@@ -26,7 +26,7 @@ app.get("/",(req,res) =>{
     if(req.cookies.access_token){
         try{
             let jwt_token = req.cookies.access_token;
-            let decoded_token = jwt.verify(jwt_token,TOKEN,{complete: true})
+            let decoded_token = jwt.verify(jwt_token,TOKEN,{complete: true}); //Fix: verifying the token signature instead of simply decoding it
             if(decoded_token){
                 let username = decoded_token.payload['username']
                 res.send(`<h2>Your role is:${users[username]['role']}</h2><br><a href="/logout"><button>Logout</button></a>`);
